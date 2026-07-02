@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>485报文解析工具 - 串口通信与CRC计算</title>
     <style>
-        /* ========== 主题变量 ========== */
         :root {
             --bg: #f5f6f8;
             --surface: #ffffff;
@@ -30,10 +29,7 @@
             --bg-advanced: #f0f2f5;
             --btn-outline-text: #2c3e50;
         }
-
-        /* 暗色主题 */
-        [data-theme="dark"] {
-            --bg: #1a1d23;
+        [data-theme="dark"] { --bg: #1a1d23;
             --surface: #21252b;
             --surface2: #282c34;
             --border: #3a3f4b;
@@ -46,16 +42,12 @@
             --red: #e06c75;
             --purple: #c678dd;
             --yellow: #f0c929;
-            --shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+            --shadow: 0 4px 16px rgba(0,0,0,0.35);
             --bg-input: #282c34;
             --bg-log: #1a1d23;
             --bg-advanced: #1a1d23;
-            --btn-outline-text: #e1e4e8;
-        }
-
-        /* 蓝色主题 */
-        [data-theme="blue"] {
-            --bg: #eef2f7;
+            --btn-outline-text: #e1e4e8; }
+        [data-theme="blue"] { --bg: #eef2f7;
             --surface: #ffffff;
             --surface2: #edf1f7;
             --border: #d0d8e8;
@@ -68,16 +60,12 @@
             --red: #c0392b;
             --purple: #7d3c98;
             --yellow: #d68910;
-            --shadow: 0 2px 10px rgba(59, 108, 180, 0.1);
+            --shadow: 0 2px 10px rgba(59,108,180,0.1);
             --bg-input: #f5f7fb;
             --bg-log: #f0f3f8;
             --bg-advanced: #e8ecf3;
-            --btn-outline-text: #1a2a3a;
-        }
-
-        /* 暖色主题 */
-        [data-theme="warm"] {
-            --bg: #fdf6f0;
+            --btn-outline-text: #1a2a3a; }
+        [data-theme="warm"] { --bg: #fdf6f0;
             --surface: #fffdfb;
             --surface2: #faf3ec;
             --border: #e8d5c4;
@@ -90,16 +78,12 @@
             --red: #b84c3b;
             --purple: #7b5e8a;
             --yellow: #c8963e;
-            --shadow: 0 2px 10px rgba(180, 140, 100, 0.12);
+            --shadow: 0 2px 10px rgba(180,140,100,0.12);
             --bg-input: #fdf9f5;
             --bg-log: #faf5ef;
             --bg-advanced: #f5ede4;
-            --btn-outline-text: #4a3728;
-        }
-
-        /* 绿色主题 */
-        [data-theme="green"] {
-            --bg: #f2f7f4;
+            --btn-outline-text: #4a3728; }
+        [data-theme="green"] { --bg: #f2f7f4;
             --surface: #ffffff;
             --surface2: #edf5ef;
             --border: #c8dcd0;
@@ -112,46 +96,20 @@
             --red: #b8403b;
             --purple: #6b4d8a;
             --yellow: #b88a28;
-            --shadow: 0 2px 10px rgba(45, 138, 86, 0.1);
+            --shadow: 0 2px 10px rgba(45,138,86,0.1);
             --bg-input: #f5faf7;
             --bg-log: #f0f7f2;
             --bg-advanced: #e8f2eb;
-            --btn-outline-text: #1a3a28;
-        }
+            --btn-outline-text: #1a3a28; }
 
-        /* ========== 全局样式 ========== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: var(--font-sans);
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 20px;
-            transition: background 0.3s, color 0.3s;
-        }
+        body { font-family: var(--font-sans); background: var(--bg); color: var(--text); min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: 20px; transition: background 0.3s, color 0.3s; }
         .app-container { width: 100%; max-width: 1100px; display: flex; flex-direction: column; gap: 16px; }
-
-        .header {
-            display: flex; align-items: center; gap: 12px; padding: 16px 20px;
-            background: var(--surface); border-radius: var(--radius);
-            border: 1px solid var(--border); box-shadow: var(--shadow);
-            transition: background 0.3s, border-color 0.3s;
-        }
+        .header { display: flex; align-items: center; gap: 12px; padding: 16px 20px; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); transition: background 0.3s; }
         .header .logo { display: flex; align-items: center; gap: 10px; font-size: 1.25em; font-weight: 700; color: var(--accent); }
         .header .subtitle { font-size: 0.85em; color: var(--text2); margin-left: auto; text-align: right; line-height: 1.4; }
-
-        .theme-selector {
-            display: flex; gap: 4px; align-items: center; margin-left: 12px;
-            background: var(--surface2); border-radius: 20px; padding: 3px;
-            border: 1px solid var(--border);
-        }
-        .theme-dot {
-            width: 24px; height: 24px; border-radius: 50%; cursor: pointer;
-            border: 2px solid transparent; transition: all 0.2s;
-        }
+        .theme-selector { display: flex; gap: 4px; align-items: center; margin-left: 12px; background: var(--surface2); border-radius: 20px; padding: 3px; border: 1px solid var(--border); }
+        .theme-dot { width: 24px; height: 24px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; }
         .theme-dot:hover { transform: scale(1.15); }
         .theme-dot.active { border-color: var(--accent); box-shadow: 0 0 6px var(--accent); }
         .theme-dot.light { background: linear-gradient(135deg, #f5f6f8 50%, #ffffff 50%); }
@@ -160,72 +118,50 @@
         .theme-dot.warm { background: linear-gradient(135deg, #fdf6f0 50%, #c0844c 50%); }
         .theme-dot.green { background: linear-gradient(135deg, #f2f7f4 50%, #2d8a56 50%); }
 
-        .card {
-            background: var(--surface); border-radius: var(--radius);
-            border: 1px solid var(--border); padding: 18px 20px;
-            box-shadow: var(--shadow); transition: background 0.3s, border-color 0.3s;
-        }
-        .card-title {
-            font-weight: 700; font-size: 0.9em; color: var(--text2);
-            text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 12px;
-            display: flex; align-items: center; gap: 8px;
-        }
+        .card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); padding: 18px 20px; box-shadow: var(--shadow); transition: background 0.3s; }
+        .card-title { font-weight: 700; font-size: 0.9em; color: var(--text2); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
         .card-title::before { content: ''; display: inline-block; width: 3px; height: 14px; background: var(--accent); border-radius: 2px; }
         .input-row { display: flex; gap: 10px; align-items: stretch; flex-wrap: wrap; }
-        .input-field {
-            flex: 1; min-width: 200px; padding: 10px 14px; background: var(--bg-input);
-            border: 2px solid var(--border); border-radius: var(--radius-sm); color: var(--text);
-            font-family: var(--font-mono); font-size: 0.88em; letter-spacing: 0.4px;
-            transition: all 0.2s; outline: none;
-        }
-        .input-field:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1); }
-        .input-sm-field {
-            width: 70px; padding: 8px 10px; background: var(--bg-input);
-            border: 2px solid var(--border); border-radius: var(--radius-sm); color: var(--text);
-            font-family: var(--font-mono); font-size: 0.85em; text-align: center; transition: all 0.2s; outline: none;
-        }
+        .input-field { flex: 1; min-width: 200px; padding: 10px 14px; background: var(--bg-input); border: 2px solid var(--border); border-radius: var(--radius-sm); color: var(--text); font-family: var(--font-mono); font-size: 0.88em; letter-spacing: 0.4px; transition: all 0.2s; outline: none; }
+        .input-field:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(52,152,219,0.1); }
+        .input-sm-field { width: 70px; padding: 8px 10px; background: var(--bg-input); border: 2px solid var(--border); border-radius: var(--radius-sm); color: var(--text); font-family: var(--font-mono); font-size: 0.85em; text-align: center; transition: all 0.2s; outline: none; }
         .input-sm-field:focus { border-color: var(--accent); }
-        .btn {
-            padding: 10px 18px; border: none; border-radius: var(--radius-sm); cursor: pointer;
-            font-weight: 600; font-size: 0.85em; transition: all 0.2s; white-space: nowrap; font-family: var(--font-sans);
-        }
+        .btn { padding: 10px 18px; border: none; border-radius: var(--radius-sm); cursor: pointer; font-weight: 600; font-size: 0.85em; transition: all 0.2s; white-space: nowrap; font-family: var(--font-sans); }
         .btn-primary { background: var(--accent); color: #fff; }
-        .btn-primary:hover { filter: brightness(1.15); box-shadow: 0 4px 14px rgba(0,0,0,0.15); }
+        .btn-primary:hover { filter: brightness(1.15); }
         .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--btn-outline-text); }
         .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
         .btn-sm { padding: 6px 12px; font-size: 0.78em; border-radius: 4px; }
         .btn-success { background: var(--green); color: #fff; font-weight: 700; }
-        .btn-success:hover { filter: brightness(1.15); }
-        .btn-danger { background: transparent; border: 1px solid var(--red); color: var(--red); padding: 4px 10px; font-size: 0.75em; border-radius: 3px; cursor: pointer; transition: all 0.15s; }
-        .btn-danger:hover { background: var(--red); color: #fff; }
         .btn-save { background: var(--purple); color: #fff; font-size: 0.78em; padding: 6px 10px; }
-        .btn-save:hover { filter: brightness(1.15); }
         .btn-connect { background: var(--green); color: #fff; font-weight: 700; }
-        .btn-connect:hover { filter: brightness(1.15); }
         .btn-connect.connected { background: var(--red); color: #fff; }
         .btn-sending { background: var(--yellow); color: #fff; animation: pulse-btn 0.8s infinite; }
         @keyframes pulse-btn { 0%,
         100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .btn-danger { background: transparent; border: 1px solid var(--red); color: var(--red); padding: 4px 10px; font-size: 0.75em; border-radius: 3px; cursor: pointer; }
+        .btn-danger:hover { background: var(--red); color: #fff; }
 
-        .serial-status { display: flex; align-items: center; gap: 8px; padding: 8px 14px; background: var(--surface2); border-radius: var(--radius-sm); font-size: 0.85em; transition: background 0.3s; }
-        .serial-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+        .serial-status { display: flex; align-items: center; gap: 8px; padding: 8px 14px; background: var(--surface2); border-radius: var(--radius-sm); font-size: 0.85em; }
+        .serial-dot { width: 10px; height: 10px; border-radius: 50%; }
         .serial-dot.on { background: var(--green); box-shadow: 0 0 8px var(--green); animation: blink 1.5s infinite; }
         .serial-dot.off { background: #aaa; }
         @keyframes blink { 0%,
         100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        .serial-log { max-height: 250px; overflow-y: auto; font-family: var(--font-mono); font-size: 0.78em; padding: 8px; background: var(--bg-log); border-radius: 4px; border: 1px solid var(--border); transition: background 0.3s; }
-        .serial-log .log-item { padding: 2px 6px; border-bottom: 1px solid var(--border); display: flex; gap: 8px; }
-        .serial-log .log-time { color: var(--text2); min-width: 75px; }
-        .serial-log .log-dir { min-width: 45px; font-weight: 700; }
-        .serial-log .log-dir.tx { color: var(--accent); }
-        .serial-log .log-dir.rx { color: var(--green); }
-        .serial-log .log-dir.info { color: var(--accent2); }
-        .serial-log .log-dir.success { color: var(--green); }
-        .serial-log .log-dir.error { color: var(--red); }
-        .serial-log .log-data { color: var(--orange); word-break: break-all; }
+        .serial-log { max-height: 250px; overflow-y: auto; font-family: var(--font-mono); font-size: 0.78em; padding: 8px; background: var(--bg-log); border-radius: 4px; border: 1px solid var(--border); }
+        .log-item { padding: 3px 8px; border-bottom: 1px solid var(--border); display: flex; gap: 8px; cursor: pointer; transition: all 0.15s; border-radius: 2px; }
+        .log-item:hover { background: var(--surface2); }
+        .log-item.active-log { background: var(--accent); color: #fff; }
+        .log-item.active-log .log-time,
+        .log-item.active-log .log-dir,
+        .log-item.active-log .log-data { color: #fff; }
+        .log-time { color: var(--text2); min-width: 75px; }
+        .log-dir { min-width: 45px; font-weight: 700; }
+        .log-dir.tx { color: var(--accent); } .log-dir.rx { color: var(--green); } .log-dir.info { color: var(--accent2); } .log-dir.error { color: var(--red); }
+        .log-data { color: var(--orange); word-break: break-all; flex: 1; }
 
-        .crc-panel { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 14px; background: var(--surface2); border-radius: var(--radius-sm); border: 1px solid var(--border); margin-top: 10px; transition: background 0.3s; }
+        .crc-panel { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 14px; background: var(--surface2); border-radius: var(--radius-sm); border: 1px solid var(--border); margin-top: 10px; }
         .crc-panel label { font-size: 0.78em; color: var(--text2); }
         .crc-panel select { padding: 5px 8px; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 3px; font-size: 0.8em; }
         .crc-result-display { font-family: var(--font-mono); font-size: 0.85em; color: var(--green); font-weight: 700; padding: 6px 12px; background: var(--bg-log); border-radius: 4px; border: 1px solid var(--border); min-width: 200px; text-align: center; }
@@ -233,41 +169,40 @@
         .crc-full-hex { font-family: var(--font-mono); font-size: 0.78em; color: var(--accent2); word-break: break-all; }
         .crc-disabled { opacity: 0.4; pointer-events: none; }
 
-        .send-advanced { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 14px; background: var(--bg-advanced); border-radius: var(--radius-sm); border: 1px dashed var(--border); margin-top: 10px; transition: background 0.3s; }
+        .send-advanced { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 14px; background: var(--bg-advanced); border-radius: var(--radius-sm); border: 1px dashed var(--border); margin-top: 10px; }
         .send-advanced.hidden { display: none; }
         .send-advanced label { font-size: 0.76em; color: var(--text2); white-space: nowrap; }
         .progress-bar { flex-basis: 100%; height: 4px; background: var(--surface); border-radius: 2px; overflow: hidden; margin-top: 4px; }
         .progress-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
 
         .group-list { display: flex; flex-direction: column; gap: 10px; max-height: 400px; overflow-y: auto; padding-right: 4px; }
-        .group-item { display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; background: var(--surface2); border-radius: 6px; border: 1px solid var(--border); transition: all 0.2s; }
+        .group-item { display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; background: var(--surface2); border-radius: 6px; border: 1px solid var(--border); }
         .group-item:hover { border-color: var(--accent); }
         .group-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-        .group-row label { font-size: 0.76em; color: var(--text2); white-space: nowrap; }
-        .group-item input[type="text"] { width: 85px; padding: 5px 7px; background: var(--bg-input); border: 1px solid var(--border); border-radius: 3px; color: var(--text); font-family: var(--font-sans); font-size: 0.82em; }
+        .group-row label { font-size: 0.76em; color: var(--text2); }
+        .group-item input[type="text"] { width: 85px; padding: 5px 7px; background: var(--bg-input); border: 1px solid var(--border); border-radius: 3px; color: var(--text); font-size: 0.82em; }
         .group-item input[type="number"] { width: 55px; padding: 5px 4px; background: var(--bg-input); border: 1px solid var(--border); border-radius: 3px; color: var(--text); font-family: var(--font-mono); font-size: 0.8em; text-align: center; }
         .group-item input.wide-input { width: 70px; }
         .group-item select { padding: 5px 6px; background: var(--bg-input); color: var(--text); border: 1px solid var(--border); border-radius: 3px; font-size: 0.78em; }
-        .group-advanced { display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; background: var(--bg-advanced); border-radius: 5px; border: 1px dashed var(--border); margin-top: 2px; transition: background 0.3s; }
+        .group-advanced { display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; background: var(--bg-advanced); border-radius: 5px; border: 1px dashed var(--border); margin-top: 2px; }
         .group-advanced.hidden { display: none; }
         .btn-add-group { background: transparent; border: 2px dashed var(--accent); color: var(--accent); cursor: pointer; border-radius: 6px; padding: 10px 16px; font-weight: 600; font-size: 0.85em; transition: all 0.2s; text-align: center; width: 100%; }
         .btn-add-group:hover { background: var(--surface2); }
         .saved-configs-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; align-items: center; }
-        .saved-config-tag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; font-size: 0.75em; cursor: pointer; transition: all 0.2s; }
+        .saved-config-tag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; font-size: 0.75em; cursor: pointer; }
         .saved-config-tag:hover { border-color: var(--accent); color: var(--accent); }
-        .saved-config-tag .del-saved { cursor: pointer; color: var(--red); font-weight: bold; margin-left: 2px; font-size: 1.1em; }
+        .saved-config-tag .del-saved { cursor: pointer; color: var(--red); font-weight: bold; margin-left: 2px; }
 
         .result-vertical { display: flex; flex-direction: column; gap: 6px; max-height: 400px; overflow-y: auto; padding-right: 4px; }
-        .result-row { display: flex; flex-direction: column; padding: 12px 14px; background: var(--surface2); border-radius: 6px; border-left: 3px solid var(--accent); font-family: var(--font-mono); font-size: 0.83em; transition: all 0.2s; cursor: pointer; }
-        .result-row:hover { filter: brightness(0.97); }
-        .result-row.active-highlight { border-left-color: var(--yellow); box-shadow: 0 0 12px rgba(240, 201, 41, 0.3); }
+        .result-row { display: flex; flex-direction: column; padding: 12px 14px; background: var(--surface2); border-radius: 6px; border-left: 3px solid var(--accent); font-family: var(--font-mono); font-size: 0.83em; cursor: pointer; }
+        .result-row.active-highlight { border-left-color: var(--yellow); box-shadow: 0 0 12px rgba(240,201,41,0.3); }
 
-        .status-bar { display: flex; align-items: center; gap: 10px; padding: 8px 16px; background: var(--surface2); border-radius: var(--radius-sm); border: 1px solid var(--border); font-size: 0.8em; color: var(--text2); transition: background 0.3s; }
-        .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+        .status-bar { display: flex; align-items: center; gap: 10px; padding: 8px 16px; background: var(--surface2); border-radius: var(--radius-sm); border: 1px solid var(--border); font-size: 0.8em; color: var(--text2); }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; }
         .dot-ok { background: var(--green); box-shadow: 0 0 6px var(--green); }
         .dot-err { background: var(--red); box-shadow: 0 0 6px var(--red); }
 
-        .frame-compact { display: flex; flex-wrap: wrap; gap: 3px; align-items: center; font-family: var(--font-mono); font-size: 0.78em; padding: 8px; background: var(--bg-log); border-radius: 4px; transition: background 0.3s; }
+        .frame-compact { display: flex; flex-wrap: wrap; gap: 3px; align-items: center; font-family: var(--font-mono); font-size: 0.78em; padding: 8px; background: var(--bg-log); border-radius: 4px; }
         .frame-byte { display: inline-block; padding: 3px 6px; border-radius: 2px; font-weight: 600; text-align: center; cursor: pointer; transition: all 0.15s; font-size: 0.85em; }
         .frame-byte:hover { transform: scale(1.15); box-shadow: 0 0 8px rgba(0,0,0,0.2); z-index: 2; }
         .byte-highlight { outline: 2px solid var(--text); outline-offset: 1px; }
@@ -276,9 +211,9 @@
         100% { outline-color: var(--yellow); } 50% { outline-color: var(--text); } }
 
         .export-dropdown { position: relative; display: inline-block; }
-        .export-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); box-shadow: var(--shadow); z-index: 10; min-width: 160px; }
+        .export-menu { display: none; position: absolute; top: 100%; right: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); box-shadow: var(--shadow); z-index: 10; min-width: 140px; }
         .export-menu.show { display: block; }
-        .export-menu button { display: block; width: 100%; padding: 8px 16px; background: transparent; border: none; color: var(--text); text-align: left; cursor: pointer; font-size: 0.82em; font-family: var(--font-sans); }
+        .export-menu button { display: block; width: 100%; padding: 8px 16px; background: transparent; border: none; color: var(--text); text-align: left; cursor: pointer; font-size: 0.82em; }
         .export-menu button:hover { background: var(--surface2); color: var(--accent); }
 
         ::-webkit-scrollbar { width: 5px; height: 5px; }
@@ -288,7 +223,6 @@
         @media (max-width: 750px) {
             .group-row { flex-direction: column; align-items: flex-start; }
             .header { flex-wrap: wrap; }
-            .theme-selector { margin-left: 0; }
         }
     </style>
 </head>
@@ -306,13 +240,13 @@
                 <span>485报文解析工具</span>
             </div>
             <div class="theme-selector" title="切换主题">
-                <span class="theme-dot light active" data-theme="light" title="浅色主题"></span>
-                <span class="theme-dot dark" data-theme="dark" title="暗色主题"></span>
-                <span class="theme-dot blue" data-theme="blue" title="蓝色主题"></span>
-                <span class="theme-dot warm" data-theme="warm" title="暖色主题"></span>
-                <span class="theme-dot green" data-theme="green" title="绿色主题"></span>
+                <span class="theme-dot light active" data-theme="light"></span>
+                <span class="theme-dot dark" data-theme="dark"></span>
+                <span class="theme-dot blue" data-theme="blue"></span>
+                <span class="theme-dot warm" data-theme="warm"></span>
+                <span class="theme-dot green" data-theme="green"></span>
             </div>
-            <div class="subtitle">串口通信 · 日志导出 · CRC校验</div>
+            <div class="subtitle">串口通信 · 点击日志解析 · CRC校验</div>
         </div>
 
         <!-- 串口连接 -->
@@ -361,9 +295,13 @@
                     <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%;"></div></div>
                 </div>
                 <div style="flex-basis:100%;margin-top:6px;">
-                    <label style="font-size:0.76em;color:var(--text2);">📋 多数据列表（每行HEX，可指定间隔ms）:</label>
-                    <textarea class="input-field" id="multiDataInput" rows="4" placeholder="01 03 00 00 00 0A&#10;01 03 00 10 00 02 500" style="width:100%;margin-top:4px;font-size:0.8em;"></textarea>
-                    <button class="btn btn-sm btn-outline" id="btnSendMulti" style="margin-top:4px;">📤 按列表发送</button>
+                    <label style="font-size:0.76em;color:var(--text2);">📋 多数据列表（每行: HEX [间隔+单位ms/s]）:</label>
+                    <textarea class="input-field" id="multiDataInput" rows="3" placeholder="01 03 00 00 00 0A 500ms&#10;01 03 00 10 00 02 1s" style="width:100%;margin-top:4px;font-size:0.8em;"></textarea>
+                    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:4px;">
+                        <label>重复:</label><input type="number" class="input-sm-field" id="multiRepeatCount" value="1" min="1">
+                        <label>默认间隔:</label><input type="number" class="input-sm-field" id="multiDefaultInterval" value="100" min="10"><span style="font-size:0.7em;color:var(--text2);">ms</span>
+                        <button class="btn btn-sm btn-primary" id="btnSendMulti">📤 按列表发送</button>
+                    </div>
                 </div>
             </div>
             <!-- CRC -->
@@ -384,14 +322,14 @@
                 <button class="btn btn-sm btn-outline" id="btnCopyCrc">📋 复制</button>
                 <div class="crc-full-hex" id="crcFullHex" style="flex-basis:100%;margin-top:4px;"></div>
             </div>
-            <div class="serial-log" id="serialLog"><div style="color:var(--text2);">日志...</div></div>
+            <div class="serial-log" id="serialLog"><div style="color:var(--text2);">日志（点击可解析对应行）</div></div>
         </div>
 
         <!-- 报文输入 -->
         <div class="card">
             <div class="card-title">📥 手动报文输入</div>
             <div class="input-row">
-                <input type="text" class="input-field" id="hexInput" placeholder="输入HEX报文" autocomplete="off" spellcheck="false">
+                <input type="text" class="input-field" id="hexInput" placeholder="输入HEX报文，或点击日志行自动填入" autocomplete="off" spellcheck="false">
                 <button class="btn btn-outline" id="btnClear">✕ 清空</button>
             </div>
             <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;">
@@ -438,101 +376,40 @@
 
     <script>
         (function() {
-            // ==================== 主题切换 ====================
-            const themeDots = document.querySelectorAll('.theme-dot');
-            const savedTheme = localStorage.getItem('rs485_theme') || 'light';
-            document.body.setAttribute('data-theme', savedTheme);
-            themeDots.forEach(dot => {
-                dot.classList.toggle('active', dot.getAttribute('data-theme') === savedTheme);
-                dot.addEventListener('click', () => {
-                    const theme = dot.getAttribute('data-theme');
-                    document.body.setAttribute('data-theme', theme);
-                    localStorage.setItem('rs485_theme', theme);
-                    themeDots.forEach(d => d.classList.remove('active'));
-                    dot.classList.add('active');
-                });
-            });
+            // 主题
+            document.querySelectorAll('.theme-dot').forEach(dot => dot.addEventListener('click', () => {
+                const t = dot.dataset.theme;
+                document.body.setAttribute('data-theme', t);
+                localStorage.setItem('rs485_theme', t);
+                document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+            }));
+            const st = localStorage.getItem('rs485_theme') || 'light';
+            document.body.setAttribute('data-theme', st);
+            document.querySelector(`.theme-dot[data-theme="${st}"]`)?.classList.add('active');
 
-            // DOM引用（省略部分，完整代码与之前一致）
-            const hexInput = document.getElementById('hexInput');
-            const btnClear = document.getElementById('btnClear');
-            const resultContainer = document.getElementById('resultContainer');
-            const frameVisual = document.getElementById('frameVisual');
-            const statusBar = document.getElementById('statusBar');
-            const groupConfigList = document.getElementById('groupConfigList');
-            const btnAddGroup = document.getElementById('btnAddGroup');
-            const btnResetGroups = document.getElementById('btnResetGroups');
-            const btnSaveConfig = document.getElementById('btnSaveConfig');
-            const btnConfirmGroups = document.getElementById('btnConfirmGroups');
-            const savedConfigsRow = document.getElementById('savedConfigsRow');
-            const rangeIndicator = document.getElementById('rangeIndicator');
-            const btnApplyRange = document.getElementById('btnApplyRange');
-            const btnConnect = document.getElementById('btnConnect');
-            const baudRateSelect = document.getElementById('baudRateSelect');
-            const serialDot = document.getElementById('serialDot');
-            const serialStatusText = document.getElementById('serialStatusText');
-            const sendHexInput = document.getElementById('sendHexInput');
-            const sendStatus = document.getElementById('sendStatus');
-            const btnSend = document.getElementById('btnSend');
-            const btnSendWithCrc = document.getElementById('btnSendWithCrc');
-            const btnToggleAdvanced = document.getElementById('btnToggleAdvanced');
-            const sendAdvanced = document.getElementById('sendAdvanced');
-            const sendCount = document.getElementById('sendCount');
-            const sendInterval = document.getElementById('sendInterval');
-            const btnBatchSend = document.getElementById('btnBatchSend');
-            const btnStopSend = document.getElementById('btnStopSend');
-            const progressFill = document.getElementById('progressFill');
-            const multiDataInput = document.getElementById('multiDataInput');
-            const btnSendMulti = document.getElementById('btnSendMulti');
-            const chkAutoResponse = document.getElementById('chkAutoResponse');
-            const btnClearLog = document.getElementById('btnClearLog');
-            const btnExportLog = document.getElementById('btnExportLog');
-            const exportMenu = document.getElementById('exportMenu');
-            const serialLog = document.getElementById('serialLog');
-            const crcTypeSelect = document.getElementById('crcTypeSelect');
-            const crcResultDisplay = document.getElementById('crcResultDisplay');
-            const crcResultBytes = document.getElementById('crcResultBytes');
-            const btnCopyCrc = document.getElementById('btnCopyCrc');
-            const crcFullHex = document.getElementById('crcFullHex');
+            const $ = id => document.getElementById(id);
+            let groupCounter = 0,
+                currentBytes = null,
+                currentConfigs = [],
+                selectedRange = null,
+                selectedStart = null,
+                activeGroupIndex = -1,
+                serialPort = null,
+                serialReader = null,
+                serialWriter = null,
+                readLoopActive = false,
+                lastCrcResult = null,
+                stopBatchSend = false;
 
-            let groupCounter = 0;
-            let currentBytes = null;
-            let currentConfigs = [];
-            let selectedRange = null;
-            let selectedStart = null;
-            let activeGroupIndex = -1;
-            let serialPort = null;
-            let serialReader = null;
-            let serialWriter = null;
-            let readLoopActive = false;
-            let lastCrcResult = null;
-            let stopBatchSend = false;
-
-            const STORAGE_KEY = 'rs485_configs_v8';
-            const unitConversions = [
-                { label: '无转换', factor: 1, suffix: '', special: false },
-                { label: '℃ → ℉', factor: 1.8, offset: 32, suffix: '℉', special: true },
-                { label: '℉ → ℃', factor: 0.5555555556, offset: -17.7777777778, suffix: '℃', special: true },
-                { label: '℃ → K', factor: 1, offset: 273.15, suffix: 'K', special: true },
-                { label: 'K → ℃', factor: 1, offset: -273.15, suffix: '℃', special: true },
-                { label: '℉ → K', factor: 0.5555555556, offset: 255.3722222222, suffix: 'K', special: true },
-                { label: 'K → ℉', factor: 1.8, offset: -459.67, suffix: '℉', special: true },
-            ];
+            const unitConversions = [{ label: '无转换', factor: 1, suffix: '', special: false }, { label: '℃→℉', factor: 1.8, offset: 32, suffix: '℉', special: true }, { label: '℉→℃', factor: 0.5555555556, offset: -17.7777777778, suffix: '℃', special: true }, { label: '℃→K', factor: 1, offset: 273.15, suffix: 'K', special: true }, { label: 'K→℃', factor: 1, offset: -273.15, suffix: '℃', special: true }, { label: '℉→K', factor: 0.5555555556, offset: 255.3722222222, suffix: 'K', special: true }, { label: 'K→℉', factor: 1.8, offset: -459.67, suffix: '℉', special: true }];
             const tempUnits = ['℃', '℉', 'K', '°C', '°F'];
 
-            function isTempUnit(u) { return u && tempUnits.some(t => u.trim().includes(t) || t.includes(u.trim())); }
+            function isTempUnit(u) { return u && tempUnits.some(t => u.trim().includes(t)); }
 
-            function hexToBytes(hexStr) {
-                let c = hexStr.replace(/[\s,;\[\]{}()]+/g, '').replace(/0x/gi, '').replace(/[^0-9a-fA-F]/g, '');
-                if (c.length % 2 !== 0) return { error: 'HEX长度必须为偶数' };
-                if (c.length === 0) return { error: '请输入有效报文' };
-                const bytes = [];
-                for (let i = 0; i < c.length; i += 2) bytes.push(parseInt(c.substring(i, i + 2), 16));
-                return { bytes, hex: c };
-            }
+            function hexToBytes(hexStr) { let c = hexStr.replace(/[\s,;\[\]{}()]+/g, '').replace(/0x/gi, '').replace(/[^0-9a-fA-F]/g, ''); if (c.length % 2) return { error: 'HEX长度需为偶数' }; if (!c.length) return { error: '请输入报文' }; const b = []; for (let i = 0; i < c.length; i += 2) b.push(parseInt(c.substring(i, i + 2), 16)); return { bytes: b, hex: c }; }
 
-            function bytesToHexStr(bytes, sep = ' ') { return bytes.map(b => b.toString(16).toUpperCase().padStart(2,
-                '0')).join(sep); }
+            function bytesToHexStr(bytes, sep = ' ') { return bytes.map(b => b.toString(16).toUpperCase().padStart(2, '0')).join(sep); }
 
             function crcModbus(bytes) { let crc = 0xFFFF; for (let i = 0; i < bytes.length; i++) { crc ^= bytes[i]; for (let j = 0; j < 8; j++) crc = (crc & 0x0001) ? (crc >> 1) ^ 0xA001 : crc >> 1; } return { value: crc, bytes: [crc & 0xFF, (crc >> 8) & 0xFF], hex: crc.toString(16).toUpperCase().padStart(4, '0') }; }
 
@@ -553,43 +430,67 @@
             function calculateCrc(bytes, type) { if (type === 'none') return { value: 0, bytes: [], hex: '—', isNone: true }; switch (type) { case 'modbus': return crcModbus(bytes); case 'crc32': return crc32(bytes); case 'ccitt': return crcCCITT(bytes); case 'add8': return add8(bytes); case 'add16': return add16(bytes); case 'add8_0': return add8_0(bytes); case 'crc16_sum': return crc16Sum(bytes);
                 default: return crcModbus(bytes); } }
 
-            function computeAndDisplayCrc() { const input = sendHexInput.value.trim(); if (!input) { crcResultDisplay.textContent = '—';
-                    crcResultBytes.textContent = '';
-                    crcFullHex.textContent = '';
+            function computeAndDisplayCrc() { const input = $('sendHexInput').value.trim(); if (!input) { $('crcResultDisplay').textContent = '—';
+                    $('crcResultBytes').textContent = '';
+                    $('crcFullHex').textContent = '';
                     lastCrcResult = null;
-                    updateCrcPanelState(); return; } const p = hexToBytes(input); if (p.error) { crcResultDisplay.textContent = '格式错误'; return; } const result = calculateCrc(p.bytes, crcTypeSelect.value);
-                lastCrcResult = { originalBytes: p.bytes, crcResult: result }; if (result.isNone) { crcResultDisplay.textContent = '无校验'; } else { crcResultDisplay.textContent = `0x${result.hex}`;
-                    crcResultBytes.textContent = `字节: ${bytesToHexStr(result.bytes,' ')}`;
-                    crcFullHex.textContent = `完整: ${bytesToHexStr([...p.bytes,...result.bytes],' ')}`; }
+                    updateCrcPanelState(); return; } const p = hexToBytes(input); if (p.error) { $('crcResultDisplay').textContent = '格式错误'; return; } const result = calculateCrc(p.bytes, $('crcTypeSelect').value);
+                lastCrcResult = { originalBytes: p.bytes, crcResult: result }; if (result.isNone) { $('crcResultDisplay').textContent = '无校验';
+                    $('crcResultBytes').textContent = ''; } else { $('crcResultDisplay').textContent = `0x${result.hex}`;
+                    $('crcResultBytes').textContent = `字节: ${bytesToHexStr(result.bytes,' ')}`;
+                    $('crcFullHex').textContent = `完整: ${bytesToHexStr([...p.bytes,...result.bytes],' ')}`; }
                 updateCrcPanelState(); }
 
-            function updateCrcPanelState() { const isNone = crcTypeSelect.value === 'none';
-                [btnSendWithCrc, btnCopyCrc].forEach(el => { if (isNone) el.classList.add('crc-disabled'); else el.classList.remove('crc-disabled'); }); }
+            function updateCrcPanelState() { const isNone = $('crcTypeSelect').value === 'none';
+                [$('btnSendWithCrc'), $('btnCopyCrc')].forEach(el => el.classList.toggle('crc-disabled', isNone)); }
 
-            crcTypeSelect.addEventListener('change', computeAndDisplayCrc);
-            sendHexInput.addEventListener('input', computeAndDisplayCrc);
-            btnCopyCrc.addEventListener('click', () => { if (!lastCrcResult || lastCrcResult.crcResult.isNone) { if (lastCrcResult) navigator.clipboard.writeText(bytesToHexStr(lastCrcResult.originalBytes, ' ')).then(() => updateStatus('ok', '已复制')); return; } const full = [...lastCrcResult.originalBytes, ...lastCrcResult.crcResult.bytes];
-                navigator.clipboard.writeText(bytesToHexStr(full, ' ')).then(() => updateStatus('ok', '已复制')).catch(() => { sendHexInput.value = bytesToHexStr(full, ' ');
-                    updateStatus('ok', '已填入'); }); });
+            $('crcTypeSelect').addEventListener('change', computeAndDisplayCrc);
+            $('sendHexInput').addEventListener('input', computeAndDisplayCrc);
+            $('btnCopyCrc').addEventListener('click', () => { if (!lastCrcResult || lastCrcResult.crcResult.isNone) { if (lastCrcResult) navigator.clipboard.writeText(bytesToHexStr(lastCrcResult.originalBytes, ' ')); return; } const full = [...lastCrcResult.originalBytes, ...lastCrcResult.crcResult.bytes];
+                navigator.clipboard.writeText(bytesToHexStr(full, ' ')).then(() => updateStatus('ok', '已复制')).catch(() => { $('sendHexInput').value = bytesToHexStr(full, ' '); }); });
 
-            function addSerialLog(direction, data) { const t = new Date(); const time = t.toLocaleTimeString('zh-CN', { hour12: false }); const d = document.createElement('div');
+            // ==================== 日志功能（含点击解析） ====================
+            function addSerialLog(direction, data) {
+                const t = new Date();
+                const d = document.createElement('div');
                 d.className = 'log-item';
                 d.setAttribute('data-time', t.toISOString());
                 d.setAttribute('data-dir', direction);
                 d.setAttribute('data-hex', data);
-                d.innerHTML = `<span class="log-time">${time}</span><span class="log-dir ${direction}">${direction.toUpperCase()}</span><span class="log-data">${data}</span>`;
-                serialLog.appendChild(d);
-                serialLog.scrollTop = serialLog.scrollHeight; while (serialLog.children.length > 500) serialLog.removeChild(serialLog.firstChild); }
+                d.title = '点击解析此报文';
+                d.innerHTML = `<span class="log-time">${t.toLocaleTimeString('zh-CN',{hour12:false})}</span><span class="log-dir ${direction}">${direction.toUpperCase()}</span><span class="log-data">${data}</span>`;
 
-            function clearSerialLog() { serialLog.innerHTML = '<div style="color:var(--text2);">日志已清空...</div>'; }
+                // 点击日志行解析
+                d.addEventListener('click', function() {
+                    const hexData = this.getAttribute('data-hex');
+                    if (hexData && hexData.trim()) {
+                        // 填入输入框
+                        $('hexInput').value = hexData;
+                        // 高亮当前日志行
+                        $('serialLog').querySelectorAll('.log-item').forEach(el => el.classList.remove('active-log'));
+                        this.classList.add('active-log');
+                        // 自动解析
+                        parseAndRender();
+                        // 滚动到结果区域
+                        $('resultContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        updateStatus('ok', `已解析日志报文 (${hexData.split(' ').length} 字节)`);
+                    }
+                });
 
-            function getLogEntries() { const entries = [];
-                serialLog.querySelectorAll('.log-item').forEach(item => { const time = item.getAttribute('data-time') || ''; const dir = item.getAttribute('data-dir') || ''; const hex = item.getAttribute('data-hex') || ''; if (dir && hex) entries.push({ time, dir, hex }); }); return entries; }
+                $('serialLog').appendChild(d);
+                $('serialLog').scrollTop = $('serialLog').scrollHeight;
+                while ($('serialLog').children.length > 500) $('serialLog').removeChild($('serialLog').firstChild);
+            }
 
-            function exportLogs(format) { const entries = getLogEntries(); if (!entries.length) { alert('没有可导出的日志'); return; } const now = new Date(); const ds = now.toISOString().replace(/[:.]/g, '-').substring(0, 19); let fn, ct, mt; switch (format) { case 'txt': fn = `日志_${ds}.txt`;
+            function clearSerialLog() { $('serialLog').innerHTML = '<div style="color:var(--text2);">日志（点击可解析对应行）</div>'; }
+
+            function getLogEntries() { const e = [];
+                $('serialLog').querySelectorAll('.log-item').forEach(item => { const t = item.getAttribute('data-time') || ''; const d = item.getAttribute('data-dir') || ''; const h = item.getAttribute('data-hex') || ''; if (d && h) e.push({ time: t, dir: d, hex: h }); }); return e; }
+
+            function exportLogs(format) { const entries = getLogEntries(); if (!entries.length) { alert('无日志'); return; } const now = new Date(); const ds = now.toISOString().replace(/[:.]/g, '-').substring(0, 19); let fn, ct, mt; switch (format) { case 'txt': fn = `日志_${ds}.txt`;
                         mt = 'text/plain';
                         ct = entries.map(e => `[${new Date(e.time).toLocaleTimeString('zh-CN',{hour12:false})}] ${e.dir}: ${e.hex}`).join('\n');
-                        ct = `485报文解析工具日志\n导出: ${now.toLocaleString()}\n${'='.repeat(40)}\n\n${ct}`; break; case 'csv': fn = `日志_${ds}.csv`;
+                        ct = `485工具日志\n导出: ${now.toLocaleString()}\n${'='.repeat(40)}\n\n${ct}`; break; case 'csv': fn = `日志_${ds}.csv`;
                         mt = 'text/csv';
                         ct = '序号,时间,方向,HEX\n' + entries.map((e, i) => `${i+1},${new Date(e.time).toLocaleTimeString('zh-CN',{hour12:false})},${e.dir},${e.hex}`).join('\n'); break; case 'json': fn = `日志_${ds}.json`;
                         mt = 'application/json';
@@ -601,26 +502,26 @@
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
-                updateStatus('ok', `✅ 已导出 ${fn}`);
+                updateStatus('ok', `已导出 ${fn}`);
                 addSerialLog('info', `日志导出: ${fn}`); }
 
-            btnExportLog.addEventListener('click', e => { e.stopPropagation();
-                exportMenu.classList.toggle('show'); });
-            exportMenu.querySelectorAll('button').forEach(b => b.addEventListener('click', e => { exportLogs(b.dataset
-                    .format);
-                exportMenu.classList.remove('show'); }));
-            document.addEventListener('click', () => exportMenu.classList.remove('show'));
+            $('btnExportLog').addEventListener('click', e => { e.stopPropagation();
+                $('exportMenu').classList.toggle('show'); });
+            $('exportMenu').querySelectorAll('button').forEach(b => b.addEventListener('click', e => { exportLogs(b.dataset.format);
+                $('exportMenu').classList.remove('show'); }));
+            document.addEventListener('click', () => $('exportMenu').classList.remove('show'));
 
-            function updateSerialStatus(c, info = '') { serialDot.className = 'serial-dot ' + (c ? 'on' : 'off');
-                serialStatusText.textContent = c ? `已连接: ${info}` : '未连接';
-                btnConnect.textContent = c ? '🔌 断开' : '🔗 连接串口';
-                btnConnect.classList.toggle('connected', c); }
+            // 串口
+            function updateSerialStatus(c, info = '') { $('serialDot').className = 'serial-dot ' + (c ? 'on' : 'off');
+                $('serialStatusText').textContent = c ? `已连接: ${info}` : '未连接';
+                $('btnConnect').textContent = c ? '🔌 断开' : '🔗 连接串口';
+                $('btnConnect').classList.toggle('connected', c); }
 
-            async function connectSerial() { if (serialPort) { await disconnectSerial(); return; } try { const port = await navigator.serial.requestPort(); await port.open({ baudRate: parseInt(baudRateSelect.value) || 9600, dataBits: 8, parity: 'none', stopBits: 1, flowControl: 'none' });
+            async function connectSerial() { if (serialPort) { await disconnectSerial(); return; } try { const port = await navigator.serial.requestPort(); await port.open({ baudRate: parseInt($('baudRateSelect').value) || 9600, dataBits: 8, parity: 'none', stopBits: 1, flowControl: 'none' });
                     serialPort = port;
                     serialWriter = port.writable.getWriter();
-                    updateSerialStatus(true, `${baudRateSelect.value}bps`);
-                    addSerialLog('info', `串口已连接`);
+                    updateSerialStatus(true, `${$('baudRateSelect').value}bps`);
+                    addSerialLog('info', '串口已连接');
                     startReadLoop(); } catch (err) { updateStatus('error', '连接失败');
                     serialPort = null; } }
 
@@ -643,84 +544,99 @@
                                     m.set(buf);
                                     m.set(nr.value, buf.length);
                                     buf = m; continue; } } catch (e) {} const hs = bytesToHexStr(Array.from(buf), ' ');
-                            addSerialLog('rx', hs); if (chkAutoResponse.checked) { hexInput.value = hs;
+                            addSerialLog('rx', hs); if ($('chkAutoResponse').checked) { $('hexInput').value = hs;
                                 parseAndRender(); }
                             buf = new Uint8Array(); } } } catch (err) { if (readLoopActive) addSerialLog('error', '读取错误'); } finally { try { reader.releaseLock(); } catch (e) {} } }
 
-            function setSendStatus(msg, type = '') { sendStatus.textContent = msg;
-                sendStatus.style.color = type === 'success' ? 'var(--green)' : type === 'error' ? 'var(--red)' : 'var(--accent)'; if (type === 'success') setTimeout(() => { if (sendStatus.textContent === msg) sendStatus.textContent = ''; }, 3000); }
+            function setSendStatus(msg, type = '') { $('sendStatus').textContent = msg;
+                $('sendStatus').style.color = type === 'success' ? 'var(--green)' : type === 'error' ? 'var(--red)' : 'var(--accent)'; if (type === 'success') setTimeout(() => { if ($('sendStatus').textContent === msg) $('sendStatus').textContent = ''; }, 3000); }
 
             async function sendSerialBytes(bytes) { if (!serialPort || !serialWriter) throw new Error('串口未连接'); await serialWriter.write(new Uint8Array(bytes)); }
 
-            async function doSend(hexStr, appendCrc = false) { let bytes; if (appendCrc) { if (crcTypeSelect.value === 'none') throw new Error('CRC已设为None'); if (!lastCrcResult || lastCrcResult.crcResult.isNone) { computeAndDisplayCrc(); if (!lastCrcResult || lastCrcResult.crcResult.isNone) throw new Error('无法计算CRC'); }
+            async function doSend(hexStr, appendCrc = false) { let bytes; if (appendCrc) { if ($('crcTypeSelect').value === 'none') throw new Error('CRC已设为None'); if (!lastCrcResult || lastCrcResult.crcResult.isNone) { computeAndDisplayCrc(); if (!lastCrcResult || lastCrcResult.crcResult.isNone) throw new Error('无法计算CRC'); }
                     bytes = [...lastCrcResult.originalBytes, ...lastCrcResult.crcResult.bytes]; } else { const p = hexToBytes(hexStr); if (p.error) throw new Error(p.error);
                     bytes = p.bytes; } await sendSerialBytes(bytes); return { bytes, hex: bytesToHexStr(bytes, ' ') }; }
 
-            btnSend.addEventListener('click', async () => { const hs = sendHexInput.value.trim(); if (!hs) return; try { const r = await doSend(hs);
+            $('btnSend').addEventListener('click', async () => { const hs = $('sendHexInput').value.trim(); if (!hs) return; try { const r = await doSend(hs);
                     addSerialLog('tx', r.hex);
-                    setSendStatus(`✅ 发送成功`, 'success'); } catch (err) { setSendStatus(`❌ ${err.message}`, 'error'); } });
-            btnSendWithCrc.addEventListener('click', async () => { if (crcTypeSelect.value === 'none') { alert('请选择CRC算法'); return; } try { const r = await doSend(sendHexInput.value.trim(), true);
+                    setSendStatus('✅ 发送成功', 'success'); } catch (err) { setSendStatus('❌ ' + err.message, 'error'); } });
+            $('btnSendWithCrc').addEventListener('click', async () => { if ($('crcTypeSelect').value === 'none') { alert('请选择CRC算法'); return; } try { const r = await doSend($('sendHexInput').value.trim(), true);
                     addSerialLog('tx', r.hex + ' (含CRC)');
-                    setSendStatus(`✅ 发送成功`, 'success'); } catch (err) { setSendStatus(`❌ ${err.message}`, 'error'); } });
+                    setSendStatus('✅ 发送成功', 'success'); } catch (err) { setSendStatus('❌ ' + err.message, 'error'); } });
 
-            btnBatchSend.addEventListener('click', async () => { const hs = sendHexInput.value.trim(); if (!hs) return; const count = parseInt(sendCount.value) || 1; const interval = parseInt(sendInterval.value) || 100;
+            $('btnBatchSend').addEventListener('click', async () => { const hs = $('sendHexInput').value.trim(); if (!hs) return; const count = parseInt($('sendCount').value) || 1; const interval = parseInt($('sendInterval').value) || 100;
                 stopBatchSend = false;
-                btnStopSend.disabled = false;
-                btnBatchSend.disabled = true;
-                btnBatchSend.classList.add('btn-sending');
-                progressFill.style.width = '0%'; let sc = 0; for (let i = 0; i < count; i++) { if (stopBatchSend) break; try { const r = await doSend(hs);
+                $('btnStopSend').disabled = false;
+                $('btnBatchSend').disabled = true;
+                $('btnBatchSend').classList.add('btn-sending');
+                $('progressFill').style.width = '0%'; let sc = 0; for (let i = 0; i < count; i++) { if (stopBatchSend) break; try { const r = await doSend(hs);
                         addSerialLog('tx', `[${i+1}/${count}] ${r.hex}`);
                         sc++; } catch (err) { addSerialLog('error', `[${i+1}] 失败`); }
-                    progressFill.style.width = `${((i+1)/count)*100}%`; if (i < count - 1 && !stopBatchSend) await new Promise(r => setTimeout(r, interval)); }
-                btnBatchSend.disabled = false;
-                btnBatchSend.classList.remove('btn-sending');
-                btnStopSend.disabled = true;
-                setSendStatus(`完成: ${sc}/${count}`, 'success'); });
-            btnStopSend.addEventListener('click', () => { stopBatchSend = true; });
+                    $('progressFill').style.width = `${((i+1)/count)*100}%`; if (i < count - 1 && !stopBatchSend) await new Promise(r => setTimeout(r, interval)); }
+                $('btnBatchSend').disabled = false;
+                $('btnBatchSend').classList.remove('btn-sending');
+                $('btnStopSend').disabled = true;
+                setSendStatus(`完成: ${sc}/${count}`, 'success'); if (stopBatchSend) { addSerialLog('info', '批量发送已停止');
+                    stopBatchSend = false; } });
+            $('btnStopSend').addEventListener('click', () => { stopBatchSend = true; });
 
-            btnSendMulti.addEventListener('click', async () => { const text = multiDataInput.value.trim(); if (!text) return; const lines = text.split('\n').filter(l => l.trim()); const dl = []; for (const line of lines) { const parts = line.trim().split(/\s+/); let delay = null; let hp = []; for (const p of parts) { if (/^\d+$/.test(p) && parseInt(p) > 10 && hp.length > 0) { delay = parseInt(p); break; }
-                        hp.push(p); } const p = hexToBytes(hp.join(' ')); if (p.error) { alert(`行${dl.length+1}错误`); return; }
-                    dl.push({ bytes: p.bytes, hex: bytesToHexStr(p.bytes, ' '), delay: delay || 100 }); }
+            function parseMultiDataLine(line) { const trimmed = line.trim(); if (!trimmed) return null; const parts = trimmed.split(/\s+/); if (!parts.length) return null; const lastPart = parts[parts.length - 1].toLowerCase(); const im = lastPart.match(/^(\d+(?:\.\d+)?)(ms|s)$/); let hp, intervalMs; if (im) { hp = parts.slice(0, -1);
+                    intervalMs = im[2] === 's' ? Math.round(parseFloat(im[1]) * 1000) : Math.round(parseFloat(im[1])); } else { hp = parts;
+                    intervalMs = null; } if (!hp.length) return null; const p = hexToBytes(hp.join(' ')); if (p.error) return { error: p.error }; return { bytes: p.bytes, hex: bytesToHexStr(p.bytes, ' '), intervalMs, error: null }; }
+
+            $('btnSendMulti').addEventListener('click', async () => { const text = $('multiDataInput').value.trim(); if (!text) { alert('请输入列表'); return; } const lines = text.split('\n').filter(l => l.trim()); if (!lines.length) { alert('无有效行'); return; } const di = parseInt($('multiDefaultInterval').value) || 100; const rc = parseInt($('multiRepeatCount').value) || 1; const dl = []; for (let i = 0; i < lines.length; i++) { const r = parseMultiDataLine(lines[i]); if (!r) continue; if (r.error) { alert(`第${i+1}行: ${r.error}`); return; }
+                    dl.push({ bytes: r.bytes, hex: r.hex, intervalMs: r.intervalMs !== null ? r.intervalMs : di }); } if (!dl.length) { alert('无有效HEX数据'); return; } const total = dl.length * rc;
                 stopBatchSend = false;
-                btnStopSend.disabled = false;
-                progressFill.style.width = '0%'; for (let i = 0; i < dl.length; i++) { if (stopBatchSend) break; try { await sendSerialBytes(dl[i].bytes);
-                        addSerialLog('tx', `[${i+1}] ${dl[i].hex}`); } catch (err) { addSerialLog('error', `[${i+1}] 失败`); }
-                    progressFill.style.width = `${((i+1)/dl.length)*100}%`; if (i < dl.length - 1 && !stopBatchSend) await new Promise(r => setTimeout(r, dl[i].delay)); }
-                btnStopSend.disabled = true;
-                setSendStatus('列表完成', 'success'); });
+                $('btnStopSend').disabled = false;
+                $('btnSendMulti').disabled = true;
+                $('btnSendMulti').classList.add('btn-sending');
+                $('progressFill').style.width = '0%'; let sc = 0,
+                    gi = 0; for (let r = 0; r < rc; r++) { if (stopBatchSend) break; for (let i = 0; i < dl.length; i++) { if (stopBatchSend) break;
+                        gi++; try { await sendSerialBytes(dl[i].bytes);
+                            addSerialLog('tx', `[${gi}/${total}] ${dl[i].hex}`);
+                            sc++; } catch (err) { addSerialLog('error', `[${gi}] 失败`); }
+                        $('progressFill').style.width = `${(gi/total)*100}%`; if (gi < total && !stopBatchSend) await new Promise(r => setTimeout(r, dl[i].intervalMs)); } }
+                $('btnSendMulti').disabled = false;
+                $('btnSendMulti').classList.remove('btn-sending');
+                $('btnStopSend').disabled = true;
+                setSendStatus(`列表完成: ${sc}/${total}`, 'success'); if (stopBatchSend) { addSerialLog('info', '列表发送已停止');
+                    stopBatchSend = false; } });
 
-            btnToggleAdvanced.addEventListener('click', () => { sendAdvanced.classList.toggle('hidden'); });
-            sendHexInput.addEventListener('keydown', e => { if (e.key === 'Enter') btnSend.click(); });
-            btnClearLog.addEventListener('click', clearSerialLog);
-            btnConnect.addEventListener('click', connectSerial);
+            $('btnToggleAdvanced').addEventListener('click', () => $('sendAdvanced').classList.toggle('hidden'));
+            $('sendHexInput').addEventListener('keydown', e => { if (e.key === 'Enter') $('btnSend').click(); });
+            $('btnClearLog').addEventListener('click', clearSerialLog);
+            $('btnConnect').addEventListener('click', connectSerial);
             window.addEventListener('beforeunload', () => { if (serialPort) disconnectSerial(); });
 
             // 配置管理
-            function getSavedConfigs() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch (e) { return []; } }
+            const SK = 'rs485_configs_v10';
 
-            function saveConfigsToStorage(c) { localStorage.setItem(STORAGE_KEY, JSON.stringify(c)); }
+            function getSavedConfigs() { try { return JSON.parse(localStorage.getItem(SK) || '[]'); } catch (e) { return []; } }
+
+            function saveConfigs(c) { localStorage.setItem(SK, JSON.stringify(c)); }
 
             function renderSavedConfigs() { const s = getSavedConfigs(); let h = '<span style="font-size:0.73em;color:var(--text2);">已保存:</span>'; if (!s.length) h += '<span style="font-size:0.7em;">暂无</span>'; else s.forEach((c, i) => h += `<span class="saved-config-tag" data-idx="${i}">📁 ${c.name}(${c.groups?.length||0}组) <span class="del-saved" data-idx="${i}">×</span></span>`);
-                savedConfigsRow.innerHTML = h;
-                savedConfigsRow.querySelectorAll('.saved-config-tag').forEach(t => t.addEventListener('click', function(e) { if (e.target.classList.contains('del-saved')) return;
+                $('savedConfigsRow').innerHTML = h;
+                $('savedConfigsRow').querySelectorAll('.saved-config-tag').forEach(t => t.addEventListener('click', function(e) { if (e.target.classList.contains('del-saved')) return;
                     loadConfig(parseInt(this.dataset.idx)); }));
-                savedConfigsRow.querySelectorAll('.del-saved').forEach(d => d.addEventListener('click', function(e) { e.stopPropagation();
+                $('savedConfigsRow').querySelectorAll('.del-saved').forEach(d => d.addEventListener('click', function(e) { e.stopPropagation();
                     deleteConfig(parseInt(this.dataset.idx)); })); }
 
             function loadConfig(i) { const s = getSavedConfigs(); if (i < 0 || i >= s.length) return;
-                groupConfigList.innerHTML = '';
+                $('groupConfigList').innerHTML = '';
                 groupCounter = 0;
-                s[i].groups.forEach(g => groupConfigList.appendChild(createGroupItem(g.start, g.end, g.name, g.byteOrder, g.displayFormat, g.formula, g.offset, g.scale, g.unit, g.convertIdx, g.advancedOpen))); }
+                s[i].groups.forEach(g => $('groupConfigList').appendChild(createGroupItem(g.start, g.end, g.name, g.byteOrder, g.displayFormat, g.formula, g.offset, g.scale, g.unit, g.convertIdx, g.advancedOpen))); }
 
             function deleteConfig(i) { const s = getSavedConfigs();
                 s.splice(i, 1);
-                saveConfigsToStorage(s);
+                saveConfigs(s);
                 renderSavedConfigs(); }
-            btnSaveConfig.addEventListener('click', () => { const cfgs = getGroupConfigs(); if (!cfgs.length) return; const n = prompt('名称:'); if (!n) return; const gd = [];
-                groupConfigList.querySelectorAll('.group-item').forEach(item => { const adv = item.querySelector('.group-advanced');
+
+            $('btnSaveConfig').addEventListener('click', () => { const cfgs = getGroupConfigs(); if (!cfgs.length) return; const n = prompt('名称:'); if (!n) return; const gd = [];
+                $('groupConfigList').querySelectorAll('.group-item').forEach(item => { const adv = item.querySelector('.group-advanced');
                     gd.push({ name: item.querySelector('.field-name').value || '?', start: parseInt(item.querySelector('.start-byte').value) || 0, end: parseInt(item.querySelector('.end-byte').value) || 1, byteOrder: item.querySelector('.byte-order').value, displayFormat: item.querySelector('.display-format').value, formula: item.querySelector('.formula-select')?.value || 'ax+b', offset: item.querySelector('.offset-val')?.value || '0', scale: item.querySelector('.scale-val')?.value || '1', unit: item.querySelector('.unit-val')?.value || '', convertIdx: parseInt(item.querySelector('.unit-convert')?.value) || 0, advancedOpen: adv && !adv.classList.contains('hidden') }); }); const saved = getSavedConfigs();
                 saved.push({ name: n, groups: gd, ts: Date.now() });
-                saveConfigsToStorage(saved);
+                saveConfigs(saved);
                 renderSavedConfigs(); });
 
             function buildConvOptions(si, st) { let o = '<option value="0">无转换</option>'; if (st) unitConversions.slice(1).forEach((c, i) => o += `<option value="${i+1}" ${i+1===si?'selected':''}>${c.label}</option>`); return o; }
@@ -728,7 +644,7 @@
             function updateTempVisibility(item) { const uv = item.querySelector('.unit-val')?.value || ''; const cs = item.querySelector('.unit-convert'); const tl = item.querySelector('.temp-label'); const s = isTempUnit(uv); if (cs) { cs.innerHTML = buildConvOptions(parseInt(cs.value) || 0, s); if (!s) cs.value = '0'; } if (tl) tl.style.display = s ? 'inline-flex' : 'none'; }
 
             function createGroupItem(sv = null, ev = null, nv = '', bo = 'big', df = 'uint', fv = 'ax+b', ov = '0', scv = '1', uv = '', ci = 0, ao = false) { groupCounter++; const item = document.createElement('div');
-                item.className = 'group-item'; if (sv === null) { const its = groupConfigList.querySelectorAll('.group-item'); if (its.length) { const le = parseInt(its[its.length - 1].querySelector('.end-byte').value) || 0;
+                item.className = 'group-item'; if (sv === null) { const its = $('groupConfigList').querySelectorAll('.group-item'); if (its.length) { const le = parseInt(its[its.length - 1].querySelector('.end-byte').value) || 0;
                         sv = le + 1;
                         ev = le + 2; } else { sv = 0;
                         ev = 1; } } if (!nv) nv = `字段${groupCounter}`; const st = isTempUnit(uv);
@@ -738,15 +654,15 @@
                 item.querySelector('.btn-remove').addEventListener('click', () => item.remove()); return item; }
 
             function getGroupConfigs() { const c = [];
-                groupConfigList.querySelectorAll('.group-item').forEach(item => { const s = parseInt(item.querySelector('.start-byte').value),
+                $('groupConfigList').querySelectorAll('.group-item').forEach(item => { const s = parseInt(item.querySelector('.start-byte').value),
                         e = parseInt(item.querySelector('.end-byte').value); if (!isNaN(s) && !isNaN(e) && s >= 0 && e >= s) c.push({ name: item.querySelector('.field-name').value, start: s, end: e, byteOrder: item.querySelector('.byte-order').value, displayFormat: item.querySelector('.display-format').value, formula: item.querySelector('.formula-select')?.value || 'ax+b', offset: parseFloat(item.querySelector('.offset-val')?.value) || 0, scale: parseFloat(item.querySelector('.scale-val')?.value) || 1, unit: item.querySelector('.unit-val')?.value || '', convertIdx: parseInt(item.querySelector('.unit-convert')?.value) || 0 }); }); return c; }
 
-            function resetGroupsToDefault() { groupConfigList.innerHTML = '';
-                groupCounter = 0; [0, 2, 4].forEach((s, i) => groupConfigList.appendChild(createGroupItem(s, s + 1, `字段${i+1}`))); }
-            btnAddGroup.addEventListener('click', () => groupConfigList.appendChild(createGroupItem()));
-            btnResetGroups.addEventListener('click', resetGroupsToDefault);
+            function resetGroupsToDefault() { $('groupConfigList').innerHTML = '';
+                groupCounter = 0; [0, 2, 4].forEach((s, i) => $('groupConfigList').appendChild(createGroupItem(s, s + 1, `字段${i+1}`))); }
+            $('btnAddGroup').addEventListener('click', () => $('groupConfigList').appendChild(createGroupItem()));
+            $('btnResetGroups').addEventListener('click', resetGroupsToDefault);
 
-            function parseBytesByConfig(bytes, cfg) { const ae = Math.min(cfg.end, bytes.length - 1); if (cfg.start >= bytes.length) return { error: '超限' }; const sl = bytes.slice(cfg.start, ae + 1); if (!sl.length) return { error: '无效' }; const oh = bytesToHexStr(sl, ' '); const od = cfg.byteOrder === 'big' ? [...sl] : [...sl].reverse(); const odh = bytesToHexStr(od, ' '); let rv = null,
+            function parseBytesByConfig(bytes, cfg) { const ae = Math.min(cfg.end, bytes.length - 1); if (cfg.start >= bytes.length) return { error: '超限' }; const sl = bytes.slice(cfg.start, ae + 1); if (!sl.length) return { error: '无效' }; const oh = bytesToHexStr(sl, ' '); const od = cfg.byteOrder === 'big' ? [...sl] : [...sl].reverse(); let rv = null,
                     dv = '',
                     vt = '',
                     cv = '',
@@ -759,62 +675,61 @@
                     rv = v; if (cfg.displayFormat === 'int') { const bits = sl.length * 8;
                         rv = v >= (1 << (bits - 1)) ? v - (1 << bits) : v; } } if ((vt === 'int' || vt === 'float') && (cfg.scale !== 1 || cfg.offset !== 0)) { let av = cfg.formula === 'ax+b' ? rv * cfg.scale + cfg.offset : (rv + cfg.offset) * cfg.scale;
                     ft = cfg.formula === 'ax+b' ? `${rv}×${cfg.scale}+${cfg.offset}=${parseFloat(av.toFixed(6))}` : `(${rv}+${cfg.offset})×${cfg.scale}=${parseFloat(av.toFixed(6))}`;
-                    dv = parseFloat(av.toFixed(6).toString().replace(/\.?0+$/, '')); } else { dv = rv?.toString() || ''; } if (cfg.unit) dv += ' ' + cfg.unit; if (isTempUnit(cfg.unit) && cfg.convertIdx > 0) { const conv = unitConversions[cfg.convertIdx]; if (conv?.special) { cv = parseFloat(((rv || 0) * conv.factor + (conv.offset || 0)).toFixed(4).toString().replace(/\.?0+$/, '')); if (conv.suffix) cv += ' ' + conv.suffix; } } return { origHex: oh, ordHex: odh, rawValue: rv, displayValue: dv, valueType: vt, formulaText: ft, convertedValue: cv, start: cfg.start, end: ae }; }
+                    dv = parseFloat(av.toFixed(6).toString().replace(/\.?0+$/, '')); } else { dv = rv?.toString() || ''; } if (cfg.unit) dv += ' ' + cfg.unit; if (isTempUnit(cfg.unit) && cfg.convertIdx > 0) { const conv = unitConversions[cfg.convertIdx]; if (conv?.special) { cv = parseFloat(((rv || 0) * conv.factor + (conv.offset || 0)).toFixed(4).toString().replace(/\.?0+$/, '')); if (conv.suffix) cv += ' ' + conv.suffix; } } return { origHex: oh, ordHex: bytesToHexStr(od, ' '), rawValue: rv, displayValue: dv, valueType: vt, formulaText: ft, convertedValue: cv, start: cfg.start, end: ae }; }
 
-            function parseAndRender() { const input = hexInput.value.trim(); if (!input) return; const p = hexToBytes(input); if (p.error) return;
+            function parseAndRender() { const input = $('hexInput').value.trim(); if (!input) return; const p = hexToBytes(input); if (p.error) return;
                 currentBytes = p.bytes;
                 currentConfigs = getGroupConfigs();
                 activeGroupIndex = -1; let rh = ''; if (!currentConfigs.length) rh += '<div style="color:var(--orange);padding:15px;">⚠ 未配置分组</div>'; else currentConfigs.forEach((cfg, i) => { const r = parseBytesByConfig(currentBytes, cfg); const ae = Math.min(cfg.end, currentBytes.length - 1); const rt = cfg.start === ae ? `字节[${cfg.start}]` : `字节[${cfg.start}~${ae}]`; if (r.error) rh += `<div class="result-row" style="border-left-color:var(--red);">⚠ ${cfg.name}</div>`; else rh += `<div class="result-row" data-group-idx="${i}"><div class="row-main"><span class="field-name" style="color:var(--accent);font-weight:700;">${cfg.name}</span><span style="color:var(--text2);font-size:0.78em;">${rt}</span><span style="color:var(--green);font-weight:700;">${r.displayValue}</span>${r.convertedValue?`<span style="color:var(--yellow);">→${r.convertedValue}</span>`:''}</div><div style="margin-top:6px;padding-top:6px;border-top:1px dashed var(--border);display:flex;gap:12px;flex-wrap:wrap;font-size:0.85em;"><span>原字节:<span style="color:var(--orange);">${r.origHex}</span></span><span>字节序:<span style="color:var(--purple);">${r.ordHex}</span></span>${r.rawValue!=null?`<span>原始值:${r.rawValue}</span>`:''}${r.formulaText?`<span style="color:var(--text2);">📐${r.formulaText}</span>`:''}</div></div>`; }); if (currentBytes.length >= 4 && crcModbus(currentBytes.slice(0, currentBytes.length - 2)).value === (currentBytes[currentBytes.length - 2] | (currentBytes[currentBytes.length - 1] << 8))) rh += '<div style="border-top:1px dashed var(--border);padding-top:8px;color:var(--accent2);">💡 符合Modbus CRC-16</div>';
-                resultContainer.innerHTML = rh;
-                resultContainer.querySelectorAll('.result-row[data-group-idx]').forEach(rw => rw.addEventListener('click', function() { const i = parseInt(this.dataset.groupIdx);
+                $('resultContainer').innerHTML = rh;
+                $('resultContainer').querySelectorAll('.result-row[data-group-idx]').forEach(rw => rw.addEventListener('click', function() { const i = parseInt(this.dataset.groupIdx);
                         highlightGroupInFrame(i);
-                        resultContainer.querySelectorAll('.result-row').forEach(r => r.classList.remove('active-highlight'));
+                        $('resultContainer').querySelectorAll('.result-row').forEach(r => r.classList.remove('active-highlight'));
                         this.classList.add('active-highlight'); }));
                 renderFrameVisual(currentBytes, currentConfigs, -1);
                 updateStatus('ok', `✅ ${currentBytes.length}字节`); }
 
             function highlightGroupInFrame(i) { if (i < 0 || i >= currentConfigs.length) return;
                 activeGroupIndex = i; const cfg = currentConfigs[i];
-                frameVisual.querySelectorAll('.frame-byte').forEach(el => { el.classList.remove('byte-active-group'); if (parseInt(el.dataset.byteIndex) >= cfg.start && parseInt(el.dataset.byteIndex) <= cfg.end) el.classList.add('byte-active-group'); }); }
+                $('frameVisual').querySelectorAll('.frame-byte').forEach(el => { el.classList.remove('byte-active-group'); if (parseInt(el.dataset.byteIndex) >= cfg.start && parseInt(el.dataset.byteIndex) <= cfg.end) el.classList.add('byte-active-group'); }); }
 
             function renderFrameVisual(bytes, cfgs, hi = -1) { const bm = new Array(bytes.length).fill(-1); const gc = [{ bg: '#d5e8f7', color: '#2980b9' }, { bg: '#d5f0e0', color: '#27ae60' }, { bg: '#fdebd0', color: '#e67e22' }, { bg: '#e8daef', color: '#8e44ad' }, { bg: '#d1f2eb', color: '#17a2b8' }];
-                cfgs.forEach((c, i) => { for (let j = c.start; j <= c.end && j < bytes.length; j++) bm[j] = i; }); let h = ''; for (let i = 0; i < bytes.length; i++) { const hv = bytes[i].toString(16).toUpperCase().padStart(2, '0'); const gi = bm[i]; let s = `background:#eee;color:#555;border:1px solid #ddd;`; let t = `字节${i}:0x${hv}`; if (gi >= 0) { const c = gc[gi % gc.length];
-                        s = `background:${c.bg};color:${c.color};border:1px solid ${c.color}33;`;
-                        t += `[${cfgs[gi].name}]`; } let cls = ''; if (selectedRange && i >= selectedRange.start && i <= selectedRange.end) cls += ' byte-highlight'; if (hi >= 0 && gi === hi) cls += ' byte-active-group';
-                    h += `<span class="frame-byte${cls}" style="${s}" title="${t}" data-byte-index="${i}" onclick="window.handleByteClick(${i},event)">${hv}</span>`; }
-                frameVisual.innerHTML = h;
+                cfgs.forEach((c, i) => { for (let j = c.start; j <= c.end && j < bytes.length; j++) bm[j] = i; }); let h = ''; for (let i = 0; i < bytes.length; i++) { const hv = bytes[i].toString(16).toUpperCase().padStart(2, '0'); const gi = bm[i]; let s = `background:#eee;color:#555;border:1px solid #ddd;`; if (gi >= 0) { const c = gc[gi % gc.length];
+                        s = `background:${c.bg};color:${c.color};border:1px solid ${c.color}33;`; } let cls = ''; if (selectedRange && i >= selectedRange.start && i <= selectedRange.end) cls += ' byte-highlight'; if (hi >= 0 && gi === hi) cls += ' byte-active-group';
+                    h += `<span class="frame-byte${cls}" style="${s}" data-byte-index="${i}" onclick="window.handleByteClick(${i},event)">${hv}</span>`; }
+                $('frameVisual').innerHTML = h;
                 updateRangeIndicator(); }
             window.handleByteClick = function(i, e) { if (e.shiftKey && selectedStart !== null) selectedRange = { start: Math.min(selectedStart, i), end: Math.max(selectedStart, i) }; else { selectedStart = i;
                     selectedRange = { start: i, end: i }; }
                 updateRangeIndicator(); if (currentBytes) renderFrameVisual(currentBytes, currentConfigs, activeGroupIndex); };
 
-            function updateRangeIndicator() { rangeIndicator.textContent = selectedRange ? `字节${selectedRange.start}~${selectedRange.end}` : '未选择'; }
-            btnApplyRange.addEventListener('click', () => { if (!selectedRange || !currentBytes) return; const n = prompt('名称:'); if (!n) return;
-                groupConfigList.appendChild(createGroupItem(selectedRange.start, selectedRange.end, n));
+            function updateRangeIndicator() { $('rangeIndicator').textContent = selectedRange ? `字节${selectedRange.start}~${selectedRange.end}` : '未选择'; }
+            $('btnApplyRange').addEventListener('click', () => { if (!selectedRange || !currentBytes) return; const n = prompt('名称:'); if (!n) return;
+                $('groupConfigList').appendChild(createGroupItem(selectedRange.start, selectedRange.end, n));
                 selectedRange = null;
                 selectedStart = null;
                 renderFrameVisual(currentBytes, currentConfigs, activeGroupIndex);
                 updateRangeIndicator(); });
-            btnConfirmGroups.addEventListener('click', parseAndRender);
-            btnClear.addEventListener('click', () => { hexInput.value = '';
-                resultContainer.innerHTML = '<div style="color:var(--text2);padding:20px;">等待输入</div>';
-                frameVisual.innerHTML = '<span style="color:var(--text2);">—</span>';
+            $('btnConfirmGroups').addEventListener('click', parseAndRender);
+            $('btnClear').addEventListener('click', () => { $('hexInput').value = '';
+                $('resultContainer').innerHTML = '<div style="color:var(--text2);padding:20px;">等待输入</div>';
+                $('frameVisual').innerHTML = '<span style="color:var(--text2);">—</span>';
                 currentBytes = null;
                 selectedRange = null;
                 selectedStart = null;
                 updateRangeIndicator(); });
-            hexInput.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault();
+            $('hexInput').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault();
                     parseAndRender(); } });
-            document.querySelectorAll('[data-example]').forEach(b => b.addEventListener('click', () => hexInput.value = b.dataset.example));
+            document.querySelectorAll('[data-example]').forEach(b => b.addEventListener('click', () => $('hexInput').value = b.dataset.example));
 
-            function updateStatus(t, m) { statusBar.innerHTML = `<span class="status-dot ${t==='ok'?'dot-ok':t==='error'?'dot-err':''}" style="${!t?'background:#aaa;':''}"></span><span>${m}</span>`; }
+            function updateStatus(t, m) { $('statusBar').innerHTML = `<span class="status-dot ${t==='ok'?'dot-ok':t==='error'?'dot-err':''}" style="${!t?'background:#aaa;':''}"></span><span>${m}</span>`; }
 
             resetGroupsToDefault();
             renderSavedConfigs();
             updateCrcPanelState();
             computeAndDisplayCrc();
-            updateStatus('neutral', '就绪 - 支持5种主题切换');
-            hexInput.focus();
+            updateStatus('neutral', '就绪 - 点击日志行可解析');
+            $('hexInput').focus();
             console.log('✅ 工具已就绪');
         })();
     </script>
